@@ -18,7 +18,7 @@ Some mathematical knowledge is required to understand both attacks. Required mat
 
 #### Design & Development
 
-The notebook only features the backend logic and functions as well as demonstration of work + proof of concept. (N, public exponent e etc have to be manually fed into the relevant functions). Future development could include frontend UI for users to input N,e. As we implement more attacks, different attack could be automatically chosen for different type of input if we want a more consumer-based product. Wiener's attack implementation is referenced from lecture slides. Coppersmith Attack is referenced from numerous online articles.
+The notebook only features the backend logic and functions as well as demonstration of work + proof of concept. (N, public exponent e etc have to be manually fed into the relevant functions). Future development could include frontend UI for users to input N,e. As we implement more attacks, different attack could be automatically chosen for different type of input if we want a more consumer-based product. Wiener's attack implementation is referenced from lecture slides. Coppersmith Attack is referenced from numerous online articles. Further improvement could include better implementation of sage methods such as .small_roots() by creating polynomial rings for faster computation of factors. Current implementation is naive. More experience with sage required.
 
 
 #### Use of code
