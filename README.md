@@ -8,22 +8,24 @@ Reasons for choosing wiener's attack is due to its simplicity. It can be easily 
 
 This basic Coppersmith attack was chosen due to Coppersmith theorem being the basis for many other types of attack on RSA vulnerability such as ROCA vulnerability. It can also be used for other attack methods for example Boneh and Durfee attack or targeting the MSB instead. I believe Professor Sourav wrote about this in his paper with Santanu Sarkar and Subhamoy Maitra on Partial Key Exposure Attacks Improvements. Hopefully, this can provide a simple understanding of Coppersmith Theorem such that we can learn from this and implement other techniques that also uses Coppersmith Theorem.
 
+Both methods can be combined together or with other methods such as side channel attacks with coppersmith attack to find our n/4 lsb, hence making them more effective.
+
 
 #### Research
 
 Some mathematical knowledge is required to understand both attacks. Required mathematical knowledge are:
 1. Continued Fractions + Convergents
-2. Coppersmith Theorem (Don't have to know in depth YET but have to understand what the theorem does. I.E given f(x,y)=polynomial with two variables over integers Z. x and y can be found in polynomial time under certain conditions.)
+2. Coppersmith Theorem (Don't have to know in depth YET but have to understand what the theorem does. I.E given f(x,y)=polynomial with two variables over integers Z. x and y can be found in polynomial time by Lenstra-Lenstra-Lovasz lattice basis reduction algorithm forming another polynomial with small coefficients. This polynomial will have the same roots as the initial polynomial and we can then use standard factorization methods.)
 
 
 #### Design & Development
 
-The notebook only features the backend logic and functions as well as demonstration of work + proof of concept. (N, public exponent e etc have to be manually fed into the relevant functions). Future development could include frontend UI for users to input N,e. As we implement more attacks, different attack could be automatically chosen for different type of input if we want a more consumer-based product. Wiener's attack implementation is referenced from lecture slides. Coppersmith Attack is referenced from numerous online articles. Further improvement could include better implementation of sage methods such as .small_roots() by creating polynomial rings for faster computation of factors. Current implementation is naive. More experience with sage required.
+The notebook only features the backend logic and functions as well as demonstration of work + proof of concept. (N, public exponent e etc have to be manually fed into the relevant functions). Future development could include frontend UI for users to input N,e. As we implement more attacks, different attack could be automatically chosen for different type of input if we want a more consumer-based product such as a RSA cracking package. Wiener's attack implementation is referenced from lecture slides. Coppersmith Attack is referenced from numerous online articles. Further improvement could include better implementation of Coppersmith Theorem using sage methods such as .small_roots() by creating polynomial rings for faster computation of factors. Current implementation is naive. More experience with sage required. Naive implementation also seems to have a soft limit. When generating RSA for n ≈ 20 and plugged into partial_key_recovery(), certain numbers do not work(Unsure why, prediction is that some kind of memory issue as SageMath kernal seems to start to hang around that time as well however, unable to find correlation despite running numerous examples with n=20.).
 
 
 #### Use of code
 
-Wiener's attack can be used if we know that d < 1/3* N^1/4. Else, if e is unusually large, we can also try wiener's attack on the suspicion that d will be short due to large e. Main drawback of Wiener's attack is that Wiener's condition can't be checked, hence we could run the attack and get no results in return, most likely due to failure to meet Wiener's condition.
+Wiener's attack can be used if we know that d < 1/3* N^1/4. Else, if e is unusually large, we can also try wiener's attack on the suspicion that d will be short due to large e. Main drawback of Wiener's attack is that Wiener's condition can't be checked, hence we could run the attack and get no results in return(set to return 0), most likely due to failure to meet Wiener's condition. Blanket running wiener's attack could still be useful due to its ease of use.
 
 Coppersmith's attack can be used as long as we know the last n/4 bits of key d. Time complexity is O(en^a) for some value of a where n refers to number of bits hence, e is required to be small as it is linear in e. This linearity can be explained as the first part of the algorithm loops through all values of e while the factoring steps at the end takes n^a for some value of a. 
 
