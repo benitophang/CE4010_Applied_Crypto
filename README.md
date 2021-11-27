@@ -8,8 +8,6 @@ Reasons for choosing wiener's attack is due to its simplicity. It can be easily 
 
 This basic Coppersmith attack was chosen due to Coppersmith theorem being the basis for many other types of attack on RSA vulnerability such as ROCA vulnerability. It can also be used for other attack methods for example Boneh and Durfee attack or targeting the MSB instead. I believe Professor Sourav wrote about this in his paper with Santanu Sarkar and Subhamoy Maitra on Partial Key Exposure Attacks Improvements. Hopefully, this can provide a simple understanding of Coppersmith Theorem such that we can learn from this and implement other techniques that also uses Coppersmith Theorem.
 
-Both methods can be combined together or with other methods such as side channel attacks with coppersmith attack to find our n/4 lsb, hence making them more effective.
-
 
 #### Research
 
@@ -25,8 +23,8 @@ The notebook only features the backend logic and functions as well as demonstrat
 
 #### Use of code
 
-Wiener's attack can be used if we know that d < 1/3* N^1/4. Else, if e is unusually large, we can also try wiener's attack on the suspicion that d will be short due to large e. Main drawback of Wiener's attack is that Wiener's condition can't be checked, hence we could run the attack and get no results in return(set to return 0), most likely due to failure to meet Wiener's condition. Blanket running wiener's attack could still be useful due to its ease of use.
+Wiener's attack can be used if we know that d < 1/3* N^1/4. Else, if e is unusually large, we can also try wiener's attack on the suspicion that d will be short due to large e. Main drawback of Wiener's attack is that Wiener's condition can't be checked, hence we could run the attack and get no results in return(set to return 0), most likely due to failure to meet Wiener's condition. Blanket running wiener's attack could still be useful in certain cases due to its ease of use and fast computation time.
 
-Coppersmith's attack can be used as long as we know the last n/4 bits of key d. Time complexity is O(en^a) for some value of a where n refers to number of bits hence, e is required to be small as it is linear in e. This linearity can be explained as the first part of the algorithm loops through all values of e while the factoring steps at the end takes n^a for some value of a. 
+Coppersmith's attack can be used as long as we know the last n/4 bits of key d. Time complexity is O(en^a) for some value of a where n refers to number of bits hence, e is required to be small as it is linear in e. This linearity can be explained as the first part of the algorithm loops through all values of e while the factoring steps at the end takes n^a for some value of a. With a large e such as 2^1024, time taken for computation might take too long and even lose out to brute-force prime division.
 
 An example use case of coppersmith's attack would be to employ side channel attacks along with coppersmith attack. Side channel attacks such as power tracing or timing attacks can allow us to find info about the private key. We would then target the LSB and once we obtain n/4 LSB, we can use the coppersmith attack implementation to find out the rest of the key.
