@@ -9,19 +9,19 @@ Reasons for choosing wiener's attack is due to its simplicity. It can be easily 
 This basic Coppersmith attack was chosen due to Coppersmith theorem being the basis for many other types of attack on RSA vulnerability such as ROCA vulnerability. It can also be used for other attack methods for example Boneh and Durfee attack or targeting the MSB instead. I believe Professor Sourav wrote about this in his paper with Santanu Sarkar and Subhamoy Maitra on Partial Key Exposure Attacks Improvements. Hopefully, this can provide a simple understanding of Coppersmith Theorem such that we can learn from this and implement other techniques that also uses Coppersmith Theorem.
 
 
-#### 2)Research
+#### Research
 
 Some mathematical knowledge is required to understand both attacks. Required mathematical knowledge are:
 1. Continued Fractions + Convergents
 2. Coppersmith Theorem (Don't have to know in depth YET but have to understand what the theorem does. I.E given f(x,y)=polynomial with two variables over integers Z. x and y can be found in polynomial time under certain conditions.)
 
 
-#### 3)Design & Development
+#### Design & Development
 
 The notebook only features the backend logic and functions as well as demonstration of work + proof of concept. (N, public exponent e etc have to be manually fed into the relevant functions). Future development could include frontend UI for users to input N,e. As we implement more attacks, different attack could be automatically chosen for different type of input if we want a more consumer-based product. Wiener's attack implementation is referenced from lecture slides. Coppersmith Attack is referenced from numerous online articles.
 
 
-#### 4)Use of code
+#### Use of code
 
 Wiener's attack can be used if we know that d < 1/3* N^1/4. Else, if e is unusually large, we can also try wiener's attack on the suspicion that d will be short due to large e. Main drawback of Wiener's attack is that Wiener's condition can't be checked, hence we could run the attack and get no results in return, most likely due to failure to meet Wiener's condition.
 
