@@ -1,6 +1,6 @@
-# CE4010_Applied_Crypto_Project
+# CE4010 Applied Crypto Project
 
-##### 1)Motivations
+# Motivations
 
 This project is a demonstration of attacks on "weak" RSA. The two attacks demonstrated are wiener's attack and partial key exposure attack (Coppersmith Theorem) which are both mathematical attacks on RSA. Wiener's attack exploits small d while Coppersmith's attack exploits small e along with known n/4 LSB. They are chosen to show why we cannot compromise on small d or small e for faster encryption/decryption.
 
