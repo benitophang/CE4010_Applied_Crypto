@@ -2,21 +2,23 @@
 
 ##### 1)Motivations
 
-This project is a demonstration of attacks on "weak" RSA. The two attacks demonstrated are wiener's attack and partial key exposure attack (Coppersmith Theorem) which are both mathematical attacks on RSA. Reasons for choosing wiener's attack is due to its simplicity. It can be easily checked against, especially with code.
+This project is a demonstration of attacks on "weak" RSA. The two attacks demonstrated are wiener's attack and partial key exposure attack (Coppersmith Theorem) which are both mathematical attacks on RSA. Wiener's attack exploits small d while Coppersmith's attack exploits small e along with known n/4 LSB. They are chosen to show why we cannot compromise on small d or small e for faster encryption/decryption.
 
-This basic Coppersmith attack was chosen due to it being the basis for other types of attack on RSA vulnerability such as ROCA vulnerability. It can also be used for other attack methods for example targeting the MSB instead. I believe Professor Sourav also wrote about this specifically in his paper with Santanu Sarkar and Subhamoy Maitra.
+Reasons for choosing wiener's attack is due to its simplicity. It can be easily checked against, especially with code. Due to this simplicity compared to Coppersmith's attack, we know that it is better to pick a large d such that Wiener's condition is not met and use methods such as Chinese Remainder Theorem for faster decryption.
+
+This basic Coppersmith attack was chosen due to Coppersmith theorem being the basis for many other types of attack on RSA vulnerability such as ROCA vulnerability. It can also be used for other attack methods for example Boneh and Durfee attack or targeting the MSB instead. I believe Professor Sourav wrote about this in his paper with Santanu Sarkar and Subhamoy Maitra on Partial Key Exposure Attacks Improvements. Hopefully, this can provide a simple understanding of Coppersmith Theorem such that we can learn from this and implement other techniques that also uses Coppersmith Theorem.
 
 
 #### 2)Research
 
 Some mathematical knowledge is required to understand both attacks. Required mathematical knowledge are:
 1. Continued Fractions + Convergents
-2. Coppersmith Theorem (Don't have to know in depth but have to understand what the theorem does. I.E given f(x,y)=polynomial with two variables over integers Z. x and y can be found in polynomial time under certain conditions.)
+2. Coppersmith Theorem (Don't have to know in depth YET but have to understand what the theorem does. I.E given f(x,y)=polynomial with two variables over integers Z. x and y can be found in polynomial time under certain conditions.)
 
 
 #### 3)Design & Development
 
-The notebook only features the backend logic and functions. (N, public exponent e etc have to be manually fed into the relevant functions). Frontend UI should be implemented for better user experience. Wiener's attack implementation is referenced from lecture slides. Coppersmith Attack is referenced from numerous online articles.
+The notebook only features the backend logic and functions as well as demonstration of work + proof of concept. (N, public exponent e etc have to be manually fed into the relevant functions). Future development could include frontend UI for users to input N,e. As we implement more attacks, different attack could be automatically chosen for different type of input if we want a more consumer-based product. Wiener's attack implementation is referenced from lecture slides. Coppersmith Attack is referenced from numerous online articles.
 
 
 #### 4)Use of code
